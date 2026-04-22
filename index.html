@@ -1,0 +1,586 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AIRTEC | Máquinas para Indústria de Tintas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <style>
+    :root {
+      --airtec-navy: #07142f;
+      --airtec-deep: #0d244c;
+      --airtec-line: rgba(84, 185, 232, 0.28);
+      --airtec-cyan: #24daf6;
+      --airtec-cyan-strong: #12c6ef;
+      --airtec-steel: #d8dce5;
+      --airtec-mist: #9ec7db;
+      --airtec-panel: rgba(7, 20, 47, 0.76);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(36, 218, 246, 0.18), transparent 30%),
+        radial-gradient(circle at bottom center, rgba(18, 198, 239, 0.16), transparent 35%),
+        linear-gradient(180deg, #041126 0%, #07142f 44%, #05101f 100%);
+    }
+    .section-shell {
+      position: relative;
+      overflow: hidden;
+    }
+    .section-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(36, 218, 246, 0.05), transparent);
+      pointer-events: none;
+    }
+    .hero-bg {
+      background:
+        linear-gradient(180deg, rgba(3, 12, 28, 0.78), rgba(3, 12, 28, 0.94)),
+        linear-gradient(180deg, #07142f 0%, #0a2957 45%, #16c6eb 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.08), transparent 18%),
+        radial-gradient(circle at 82% 84%, rgba(36, 218, 246, 0.2), transparent 24%);
+      pointer-events: none;
+    }
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 27%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(94, 194, 233, 0.45), transparent);
+      box-shadow: 0 0 25px rgba(36, 218, 246, 0.35);
+      pointer-events: none;
+    }
+    .brand-title {
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 0.08em;
+    }
+    .metallic-text {
+      background: linear-gradient(180deg, #ffffff 0%, #dde2eb 38%, #aeb4be 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .cyan-text {
+      color: var(--airtec-cyan);
+      text-shadow: 0 0 18px rgba(36, 218, 246, 0.24);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+    .hero-card {
+      border: 1px solid rgba(174, 180, 190, 0.16);
+      background: linear-gradient(180deg, rgba(10, 33, 67, 0.74), rgba(5, 16, 31, 0.82));
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+    }
+    .brand-panel {
+      position: relative;
+      padding: 1rem;
+      border-radius: 2rem;
+      background: linear-gradient(180deg, rgba(4, 17, 38, 0.62), rgba(8, 25, 50, 0.86));
+      border: 1px solid rgba(114, 207, 239, 0.22);
+      box-shadow: 0 25px 90px rgba(0, 0, 0, 0.34);
+    }
+    .brand-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto 7% 8% 7%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(36, 218, 246, 0.7), transparent);
+      opacity: 0.7;
+    }
+    .brand-panel img {
+      width: 100%;
+      border-radius: 1.5rem;
+      opacity: 0.94;
+    }
+    .action-primary {
+      background: linear-gradient(135deg, #dce1ea 0%, #8be8fb 52%, #12c6ef 100%);
+      color: #03101f;
+      box-shadow: 0 18px 35px rgba(18, 198, 239, 0.28);
+    }
+    .action-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 45px rgba(18, 198, 239, 0.34);
+    }
+    .action-secondary {
+      border: 1px solid rgba(216, 220, 229, 0.34);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .action-secondary:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(36, 218, 246, 0.55);
+    }
+    .panel-card {
+      background: linear-gradient(180deg, rgba(7, 20, 47, 0.82), rgba(4, 14, 29, 0.92));
+      border: 1px solid rgba(82, 157, 196, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+    .accent-icon {
+      background: linear-gradient(180deg, #dce1ea 0%, #8ceafc 60%, #20d8f5 100%);
+      color: #03101f;
+      box-shadow: 0 16px 30px rgba(18, 198, 239, 0.18);
+    }
+    .section-title {
+      font-family: "Orbitron", sans-serif;
+      letter-spacing: 0.05em;
+    }
+    .highlight-number {
+      font-family: "Orbitron", sans-serif;
+      color: var(--airtec-cyan);
+      text-shadow: 0 0 22px rgba(36, 218, 246, 0.22);
+    }
+    .teal-link {
+      color: var(--airtec-cyan);
+    }
+    .teal-link:hover {
+      color: #8ceafc;
+    }
+    .site-logo {
+      height: 3.4rem;
+      width: auto;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    }
+    .carousel-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(98, 181, 215, 0.2);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.28);
+    }
+    .carousel-slide {
+      display: none;
+      width: 100%;
+      animation: fadeIn 0.5s;
+    }
+    .carousel-slide.active {
+      display: block;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .carousel-controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 90%;
+    }
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(216, 220, 229, 0.45);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+    .carousel-dot.active {
+      background: var(--airtec-cyan);
+      border-color: rgba(255, 255, 255, 0.8);
+      width: 30px;
+      border-radius: 6px;
+      box-shadow: 0 0 18px rgba(36, 218, 246, 0.35);
+    }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(4, 17, 38, 0.82);
+      color: white;
+      border: 1px solid rgba(114, 207, 239, 0.28);
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 10;
+    }
+    .carousel-arrow:hover {
+      background: rgba(18, 198, 239, 0.92);
+      color: #03101f;
+      transform: translateY(-50%) scale(1.1);
+    }
+    .carousel-arrow.prev {
+      left: 10px;
+    }
+    .carousel-arrow.next {
+      right: 10px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="text-slate-100">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 border-b border-cyan-400/10 bg-slate-950/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <img src="logo.jpg" alt="Logo AIRTEC" class="site-logo rounded-xl">
+        <div>
+          <h1 class="brand-title text-xl md:text-2xl font-bold metallic-text">AIR<span class="cyan-text">tec</span></h1>
+          <p class="text-[0.7rem] uppercase tracking-[0.35em] text-slate-400">Envase e Processos</p>
+        </div>
+      </div>
+      <div class="hidden md:flex space-x-8 text-lg">
+        <a href="#sobre" class="hover:text-cyan-300 transition">Sobre Nós</a>
+        <a href="#equipamentos" class="hover:text-cyan-300 transition">Equipamentos</a>
+        <a href="#video" class="hover:text-cyan-300 transition">Em Funcionamento</a>
+        <a href="#contato" class="hover:text-cyan-300 transition">Contato</a>
+      </div>
+      <a href="https://wa.me/5511986441696" target="_blank" 
+         class="action-primary font-semibold px-6 py-3 rounded-full flex items-center gap-2 transition">
+        <i class="fab fa-whatsapp text-xl"></i> WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-bg min-h-screen flex items-center pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="hero-grid">
+        <div class="hero-card rounded-[2rem] p-8 md:p-12">
+          <p class="mb-5 text-sm uppercase tracking-[0.45em] text-cyan-200/80">AIRTEC Industrial Systems</p>
+          <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+            <span class="metallic-text">Máquinas de Alta Performance</span><br>
+            <span class="text-cyan-300">com a assinatura visual da AIRtec</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-3xl">
+            Soluções completas em envase, dispersão e moagem com uma presença de marca mais tecnológica, precisa e industrial.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6">
+            <a href="#equipamentos" class="action-primary font-bold px-10 py-5 rounded-2xl text-xl transition text-center">Ver nossos equipamentos</a>
+            <a href="https://wa.me/5511986441696" target="_blank" class="action-secondary text-white font-bold px-10 py-5 rounded-2xl text-xl transition flex items-center justify-center gap-3">
+              <i class="fab fa-whatsapp text-2xl"></i> Falar no WhatsApp
+            </a>
+          </div>
+          <div class="mt-10 grid gap-5 sm:grid-cols-3 text-left">
+            <div class="rounded-2xl border border-cyan-400/10 bg-slate-950/35 p-4">
+              <div class="text-sm uppercase tracking-[0.3em] text-slate-400">Experiência</div>
+              <div class="highlight-number text-3xl mt-2">+30</div>
+            </div>
+            <div class="rounded-2xl border border-cyan-400/10 bg-slate-950/35 p-4">
+              <div class="text-sm uppercase tracking-[0.3em] text-slate-400">Projeto</div>
+              <div class="text-lg font-semibold text-slate-100 mt-2">Linha sob medida</div>
+            </div>
+            <div class="rounded-2xl border border-cyan-400/10 bg-slate-950/35 p-4">
+              <div class="text-sm uppercase tracking-[0.3em] text-slate-400">Suporte</div>
+              <div class="text-lg font-semibold text-slate-100 mt-2">Instalação e treino</div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-panel">
+          <img src="logo.jpg" alt="Identidade visual da AIRTEC">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrossel de Apresentação -->
+  <section class="section-shell py-24 bg-slate-950/20">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-5 metallic-text">Nossas Máquinas em Ação</h2>
+      <p class="text-center text-slate-300 text-lg mb-16 max-w-3xl mx-auto">
+        A nova identidade visual traz o mesmo equilíbrio do logo: profundidade, brilho técnico e acabamento premium.
+      </p>
+
+      <div class="carousel-container">
+        <div class="carousel-slide active">
+          <img src="20170510_090017.jpg" alt="Máquina AIRTEC 1">
+        </div>
+        <div class="carousel-slide">
+          <img src="20170529_090149.jpg" alt="Máquina AIRTEC 2">
+        </div>
+        <div class="carousel-slide">
+          <img src="20170609_115749.jpg" alt="Máquina AIRTEC 3">
+        </div>
+        <div class="carousel-slide">
+          <img src="20171017_223739.jpg" alt="Máquina AIRTEC 4">
+        </div>
+        <div class="carousel-slide">
+          <img src="WhatsApp Image 2026-04-22 at 08.42.55.jpeg" alt="Máquina AIRTEC 5">
+        </div>
+
+        <button class="carousel-arrow prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="carousel-arrow next" onclick="changeSlide(1)">&#10095;</button>
+
+        <div class="carousel-controls">
+          <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+          <span class="carousel-dot" onclick="currentSlide(2)"></span>
+          <span class="carousel-dot" onclick="currentSlide(3)"></span>
+          <span class="carousel-dot" onclick="currentSlide(4)"></span>
+          <span class="carousel-dot" onclick="currentSlide(5)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section id="sobre" class="section-shell py-24 bg-slate-950/10">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="section-title text-4xl md:text-5xl font-bold mb-6 metallic-text">AIRTEC, Paixão por Máquinas Industriais</h2>
+        <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+          Mais de 30 anos fabricando soluções completas para a indústria de tintas, vernizes e produtos químicos
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-12 mb-16">
+        <div class="panel-card rounded-3xl p-8 text-center">
+          <div class="accent-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-lightbulb text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-slate-100">Design Inovador</h3>
+          <p class="text-slate-300">
+            Desenvolvemos continuamente novos padrões e tecnologias para modernizar nossos equipamentos
+          </p>
+        </div>
+
+        <div class="panel-card rounded-3xl p-8 text-center">
+          <div class="accent-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-cogs text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-slate-100">Fabricação de Qualidade</h3>
+          <p class="text-slate-300">
+            Todas as máquinas são projetadas, fabricadas, montadas e testadas em nossa própria oficina
+          </p>
+        </div>
+
+        <div class="panel-card rounded-3xl p-8 text-center">
+          <div class="accent-icon w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-headset text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-slate-100">Suporte ao Cliente</h3>
+          <p class="text-slate-300">
+            Assistência completa na instalação, comissionamento e treinamento de operadores
+          </p>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <h3 class="text-3xl font-bold mb-6 metallic-text">Especialistas em Máquinas para Tintas</h3>
+          <p class="text-xl text-slate-300 leading-relaxed mb-6">
+            A AIRTEC é especializada na fabricação de máquinas para envase de tintas, vernizes e massa corrida, 
+            tanques trimix, dispersores e moinhos de tinta.
+          </p>
+          <p class="text-lg text-slate-400 mb-8">
+            Oferecemos também manutenção completa, reforma e suporte técnico para toda linha industrial.
+          </p>
+          
+          <div class="flex items-center gap-10">
+            <div>
+              <div class="highlight-number text-5xl font-bold">+30</div>
+              <div class="text-slate-400">Anos de Experiência</div>
+            </div>
+            <div>
+              <div class="highlight-number text-5xl font-bold">100%</div>
+              <div class="text-slate-400">Foco em Qualidade</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <img src="WhatsApp Image 2026-04-22 at 08.42.55.jpeg" alt="Máquina AIRTEC" class="rounded-3xl shadow-2xl w-full border border-cyan-400/10">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipamentos -->
+  <section id="equipamentos" class="section-shell py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-16 metallic-text">Nossos Equipamentos</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div class="panel-card rounded-3xl overflow-hidden hover:scale-105 transition">
+          <img src="20171017_223739.jpg" alt="Máquina de Envase" class="w-full h-64 object-cover">
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold mb-3 text-slate-100">Máquinas de Envase</h3>
+            <p class="text-slate-400">Precisão no enchimento de latas, baldes e frascos de tintas, vernizes e massa corrida.</p>
+          </div>
+        </div>
+
+        <div class="panel-card rounded-3xl overflow-hidden hover:scale-105 transition">
+          <img src="trimix.jpg" alt="Tanque Trimix" class="w-full h-64 object-cover">
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold mb-3 text-slate-100">Tanques Trimix</h3>
+            <p class="text-slate-400">Misturadores de alta performance para produtos líquidos e pastosos.</p>
+          </div>
+        </div>
+
+        <div class="panel-card rounded-3xl overflow-hidden hover:scale-105 transition">
+          <img src="20170609_115749.jpg" alt="Linha de Envase" class="w-full h-64 object-cover">
+          <div class="p-8">
+            <h3 class="text-2xl font-semibold mb-3 text-slate-100">Linha Completa de Envase</h3>
+            <p class="text-slate-400">Sistemas automatizados para alta produtividade.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Vídeo em Funcionamento -->
+  <section id="video" class="section-shell py-24 bg-slate-950/10">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-12 metallic-text">Nossa Máquina em Funcionamento</h2>
+      <div class="aspect-video rounded-3xl overflow-hidden shadow-2xl border border-cyan-400/10 bg-black">
+        <video controls class="w-full h-full" poster="20171017_223739.jpg">
+          <source src="Airtec em Ação.mp4" type="video/mp4">
+          Seu navegador não suporta o vídeo.
+        </video>
+      </div>
+      <p class="text-center text-slate-400 mt-6">Linha automática de envase de tintas e massa corrida</p>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="section-shell py-24">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="section-title text-4xl md:text-5xl font-bold text-center mb-4 metallic-text">Entre em Contato</h2>
+      <p class="text-center text-xl text-slate-400 mb-12">Solicite orçamento ou tire suas dúvidas</p>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <div class="panel-card rounded-3xl p-8">
+          <h3 class="text-2xl font-semibold mb-6 text-slate-100">Nossos Contatos</h3>
+          <div class="space-y-6 text-lg">
+            <div class="flex items-center gap-4">
+              <i class="fab fa-whatsapp text-3xl text-cyan-300"></i>
+              <div>
+                <div class="font-medium">WhatsApp</div>
+                <a href="https://wa.me/5511986441696" target="_blank" class="teal-link hover:underline">(11) 98644-1696</a>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <i class="fa-solid fa-location-dot text-3xl text-cyan-300"></i>
+              <div>
+                <div class="font-medium">Endereço</div>
+                <p class="text-slate-400">Rua Jacome Teles de Menezes, 444<br>
+                CEP 03759-030 • São Paulo - SP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm" class="panel-card space-y-6 p-10 rounded-3xl">
+          <input type="text" placeholder="Nome da empresa" class="w-full bg-slate-950/60 border border-cyan-400/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-300">
+          <input type="text" placeholder="Seu nome" class="w-full bg-slate-950/60 border border-cyan-400/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-300">
+          <input type="tel" placeholder="Telefone / WhatsApp" class="w-full bg-slate-950/60 border border-cyan-400/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-300">
+          <textarea placeholder="Descreva sua necessidade (ex: máquina de envase para baldes de 18kg, manutenção...)" rows="5" class="w-full bg-slate-950/60 border border-cyan-400/10 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-300"></textarea>
+          <button type="submit" class="action-primary w-full font-bold py-5 rounded-2xl text-xl transition">Enviar Mensagem</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-950/80 py-12 text-center text-slate-500 border-t border-cyan-400/10">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="flex justify-center gap-8 mb-6">
+        <a href="https://wa.me/5511986441696" target="_blank" class="text-cyan-300 hover:text-cyan-200 transition text-2xl">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="#" class="text-slate-400 hover:text-cyan-300 transition text-2xl">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a href="#" class="text-slate-400 hover:text-cyan-300 transition text-2xl">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="#" class="text-slate-400 hover:text-cyan-300 transition text-2xl">
+          <i class="fab fa-youtube"></i>
+        </a>
+      </div>
+      <p>© 2026 AIRTEC Máquinas Industriais • Todos os direitos reservados</p>
+      <p class="mt-2">Especialistas em Máquinas de Envase, Tanques Trimix, Dispersores e Manutenção Industrial</p>
+      <p class="mt-3 text-sm">Rua Jacome Teles de Menezes, 444 • São Paulo - SP • CEP 03759-030</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Formulário
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Mensagem recebida! Em breve entraremos em contato via WhatsApp.');
+    });
+
+    // Carrossel
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function changeSlide(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName("carousel-slide");
+      let dots = document.getElementsByClassName("carousel-dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+    }
+
+    // Auto-play do carrossel
+    setInterval(function() {
+      changeSlide(1);
+    }, 5000);
+  </script>
+</body>
+</html>
